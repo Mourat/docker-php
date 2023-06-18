@@ -1,37 +1,10 @@
 version: '3'
 services:
-  php:
-#    image: php:8.2-apache
-    build: .
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - 8000:80
+      - 80:8000
     volumes:
-      - ./app:/var/www/html
-      - ./php-config:/usr/local/etc/php/conf.d
-    depends_on:
-      - mysql
-
-  mysql:
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD=your_mysql_root_password
-      - MYSQL_DATABASE=your_mysql_database
-      - MYSQL_USER=your_mysql_user
-      - MYSQL_PASSWORD=your_mysql_password
-    volumes:
-      - mysql-data:/var/lib/mysql
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-      - 8080:80
-    environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mysql
-      - PMA_USER=your_mysql_user
-      - PMA_PASSWORD=your_mysql_password
-    depends_on:
-      - mysql
-
-volumes:
-  mysql-data:
+      - ./src:/var/www/html
