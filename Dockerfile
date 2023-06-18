@@ -1,5 +1,5 @@
 # Базовый образ с PHP
-FROM php:8.2-cli
+FROM php:fpm-alpine
 
 # Установка расширений PHP
 RUN docker-php-ext-install pdo_mysql
