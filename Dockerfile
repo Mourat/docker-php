@@ -1,6 +1,9 @@
 # Базовый образ с PHP
 FROM php:8.2-cli
 
+# Установка расширений PHP
+RUN docker-php-ext-install pdo_mysql
+
 # Копирование исходного кода приложения в контейнер
 COPY src/ /var/www/html
 
